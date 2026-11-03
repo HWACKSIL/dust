@@ -31,6 +31,12 @@ const adviceText = document.getElementById('adviceText');
 // 최신 측정 시각 표시 요소
 const signalTimestamp = document.getElementById('signalTimestamp');
 
+// 차트 섹션 컨테이너 DOM 요소
+const chartSection = document.getElementById('chartSection');
+
+// Chart.js 인스턴스를 저장할 전역 변수
+let dustChartInstance = null;
+
 // 시도 선택 드롭다운 변경 시 데이터 재조회 이벤트 리스너 등록
 sidoSelect.addEventListener('change', () => {
   // 선택한 지역의 공기질 데이터 조회 함수 호출
@@ -148,6 +154,8 @@ async function fetchAirQualityData(sidoName) {
       statusGradeText.textContent = '데이터 없음';
       // 안내 문구 갱신
       adviceText.textContent = '해당 지역의 대기질 데이터를 찾을 수 없습니다.';
+      // 차트 섹션 숨기기
+      chartSection.style.display = 'none';
       // 종료
       return;
     }
@@ -155,8 +163,14 @@ async function fetchAirQualityData(sidoName) {
     // 로딩 메시지 숨기기
     loadingStatus.style.display = 'none';
 
+    // 차트 섹션 보이기
+    chartSection.style.display = 'block';
+
     // 측정소 데이터 렌더링 및 공기 신호등 전광판 갱신
     renderStationsAndSignal(items, sidoName);
+
+    // 가로 막대 그래프 렌더링 함수 호출
+    renderTop10Chart(items);
 
   } catch (error) {
     // 콘솔 에러 출력
@@ -170,6 +184,9 @@ async function fetchAirQualityData(sidoName) {
 
     // 상태 텍스트에 오류 표시
     statusGradeText.textContent = '오류 발생';
+
+    // 오류 시 차트 섹션 숨기기
+    chartSection.style.display = 'none';
   }
 }
 
@@ -282,27 +299,27 @@ function getGradeInfo(grade) {
   // 1: 좋음 (파랑)
   if (g === '1') {
     // 파랑 정보 반환
-    return { text: '좋음', emoji: '🔵', cardClass: 'card-good' };
+    return { text: '좋음', emoji: '🔵', cardClass: 'card-good', color: '#3182ce', bgColor: 'rgba(49, 130, 206, 0.7)' };
   }
   // 2: 보통 (초록)
   else if (g === '2') {
     // 초록 정보 반환
-    return { text: '보통', emoji: '🟢', cardClass: 'card-normal' };
+    return { text: '보통', emoji: '🟢', cardClass: 'card-normal', color: '#38a169', bgColor: 'rgba(56, 161, 105, 0.7)' };
   }
   // 3: 나쁨 (주황)
   else if (g === '3') {
     // 주황 정보 반환
-    return { text: '나쁨', emoji: '🟠', cardClass: 'card-bad' };
+    return { text: '나쁨', emoji: '🟠', cardClass: 'card-bad', color: '#dd6b20', bgColor: 'rgba(221, 107, 32, 0.7)' };
   }
   // 4: 매우나쁨 (빨강)
   else if (g === '4') {
     // 빨강 정보 반환
-    return { text: '매우나쁨', emoji: '🔴', cardClass: 'card-very-bad' };
+    return { text: '매우나쁨', emoji: '🔴', cardClass: 'card-very-bad', color: '#e53e3e', bgColor: 'rgba(229, 62, 62, 0.7)' };
   }
   // 등급 없음 또는 미측정 (회색)
   else {
     // 회색 정보 반환
-    return { text: '측정안됨', emoji: '⚪', cardClass: 'card-unknown' };
+    return { text: '측정안됨', emoji: '⚪', cardClass: 'card-unknown', color: '#a0aec0', bgColor: 'rgba(160, 174, 192, 0.7)' };
   }
 }
 
@@ -375,4 +392,147 @@ function updateTrafficLight(total, count, sidoName) {
     // 전광판 빨간색 테마 적용
     trafficLightCard.className = 'traffic-light-card theme-very-bad';
   }
+}
+
+// Chart.js를 사용해 미세먼지 수치 상위 10개 가로 막대 그래프를 렌더링하는 함수
+function renderTop10Chart(items) {
+  // Chart.js 라이브러리가 로드되었는지 확인
+  if (typeof Chart === 'undefined') {
+    // 콘솔 경고 출력 후 종료
+    console.warn('Chart.js 라이브러리가 아직 로드되지 않았습니다.');
+    return;
+  }
+
+  // 1. '측정안됨'('-' 및 비어있는 값)을 제외한 유효한 측정소만 필터링
+  const validItems = items.filter(item => {
+    // pm10Value 값 추출
+    const val = item.pm10Value;
+    // 유효한 숫자인지 여부 확인
+    return val && val !== '-' && !isNaN(Number(val));
+  });
+
+  // 유효한 데이터가 없을 경우 차트 섹션 숨기기
+  if (validItems.length === 0) {
+    // 숨김 처리
+    chartSection.style.display = 'none';
+    return;
+  }
+
+  // 2. 미세먼지 수치가 높은 순(내림차순)으로 정렬 후 상위 10개만 선택
+  const top10Items = validItems
+    .sort((a, b) => Number(b.pm10Value) - Number(a.pm10Value))
+    .slice(0, 10);
+
+  // 차트 X축 레이블(측정소 이름) 배열 생성
+  const labels = top10Items.map(item => item.stationName || '알 수 없음');
+
+  // 차트 실제 미세먼지 수치 데이터 배열 생성
+  const dataValues = top10Items.map(item => Number(item.pm10Value));
+
+  // 각 측정소 등급에 맞춘 막대 배경색 배열 생성
+  const backgroundColors = top10Items.map(item => {
+    // 등급 정보 조회
+    const info = getGradeInfo(item.pm10Grade);
+    // 막대 배경색 반환
+    return info.bgColor;
+  });
+
+  // 각 측정소 등급에 맞춘 막대 테두리색 배열 생성
+  const borderColors = top10Items.map(item => {
+    // 등급 정보 조회
+    const info = getGradeInfo(item.pm10Grade);
+    // 테두리 진한 색 반환
+    return info.color;
+  });
+
+  // 캔버스 엘리먼트 가져오기
+  const ctx = document.getElementById('dustChart').getContext('2d');
+
+  // 기존 차트 인스턴스가 존재할 경우 중복 방지를 위해 파기(destroy)
+  if (dustChartInstance) {
+    // 차트 인스턴스 파기
+    dustChartInstance.destroy();
+  }
+
+  // 가로 막대 그래프 생성 (indexAxis: 'y')
+  dustChartInstance = new Chart(ctx, {
+    // 차트 유형: bar
+    type: 'bar',
+    data: {
+      // Y축 라벨 (측정소명)
+      labels: labels,
+      datasets: [{
+        // 범례 라벨
+        label: '미세먼지 (PM10)',
+        // 수치 데이터
+        data: dataValues,
+        // 등급별 개별 배경색 적용
+        backgroundColor: backgroundColors,
+        // 등급별 개별 테두리색 적용
+        borderColor: borderColors,
+        // 테두리 두께
+        borderWidth: 1.5,
+        // 막대 모서리 둥글게 처리
+        borderRadius: 6,
+        // 막대 두께 비율
+        barPercentage: 0.7
+      }]
+    },
+    options: {
+      // 가로 막대 그래프 설정 (indexAxis: 'y')
+      indexAxis: 'y',
+      // 반응형 크기 조절 활성화
+      responsive: true,
+      // 캔버스 비율 유지 해제 (컨테이너에 맞춤)
+      maintainAspectRatio: false,
+      plugins: {
+        // 범례 숨김 (라벨이 불필요하므로 깔끔하게 처리)
+        legend: {
+          display: false
+        },
+        // 툴팁(마우스 올렸을 때 상세 정보) 설정
+        tooltip: {
+          // 패딩
+          padding: 10,
+          // 폰트 설정
+          titleFont: { family: 'Pretendard', size: 13, weight: 'bold' },
+          bodyFont: { family: 'Pretendard', size: 12 },
+          // 콜백으로 단위 붙이기
+          callbacks: {
+            label: function(context) {
+              return ` 미세먼지: ${context.parsed.x} µg/m³`;
+            }
+          }
+        }
+      },
+      scales: {
+        // X축 (미세먼지 수치 축)
+        x: {
+          // 0부터 시작
+          beginAtZero: true,
+          grid: {
+            // 연한 모눈선
+            color: '#edf2f7'
+          },
+          ticks: {
+            // 폰트 설정
+            font: { family: 'Pretendard', size: 11 },
+            color: '#718096'
+          }
+        },
+        // Y축 (측정소 이름 축)
+        y: {
+          grid: {
+            // 가로선 제거하여 깔끔하게
+            display: false
+          },
+          ticks: {
+            // 폰트 설정
+            font: { family: 'Pretendard', size: 12, weight: '600' },
+            color: '#2d3748'
+          }
+        }
+      }
+    }
+  });
 }

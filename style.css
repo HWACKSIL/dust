@@ -434,6 +434,70 @@ body {
   border-color: #e2e8f0;
 }
 
+/* 가로 막대 그래프 섹션 스타일 */
+.chart-section {
+  /* 흰색 배경 */
+  background: #ffffff;
+  /* 둥근 모서리 */
+  border-radius: 18px;
+  /* 내부 패딩 */
+  padding: 24px 20px;
+  /* 그림자 효과 */
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.05);
+  /* 연한 테두리 */
+  border: 1.5px solid #e2e8f0;
+  /* 하단 여백 */
+  margin-bottom: 24px;
+}
+
+/* 차트 헤더 영역 */
+.chart-header {
+  /* 양쪽 정렬 플렉스 */
+  display: flex;
+  /* 분산 정렬 */
+  justify-content: space-between;
+  /* 하단 정렬 */
+  align-items: baseline;
+  /* 넘칠 때 줄바꿈 */
+  flex-wrap: wrap;
+  /* 간격 */
+  gap: 8px;
+  /* 하단 여백 */
+  margin-bottom: 16px;
+  /* 하단 연한 테두리 선 */
+  border-bottom: 1px solid #edf2f7;
+  /* 패딩 */
+  padding-bottom: 12px;
+}
+
+/* 차트 제목 폰트 */
+.chart-header h2 {
+  /* 글자 크기 */
+  font-size: 1.25rem;
+  /* 굵기 */
+  font-weight: 800;
+  /* 짙은 색상 */
+  color: #1a202c;
+}
+
+/* 차트 보조 설명 문구 */
+.chart-subtext {
+  /* 작은 글씨 */
+  font-size: 0.85rem;
+  /* 회색 */
+  color: #718096;
+}
+
+/* 차트 캔버스 감싸는 컨테이너 */
+.chart-container {
+  /* 상대 위치 지정 */
+  position: relative;
+  /* 너비 100% */
+  width: 100%;
+  /* 최소 높이 확보 */
+  min-height: 340px;
+}
+
 /* 로딩 및 안내 메시지 */
 .loading-status {
   /* 가운데 정렬 */
@@ -692,5 +756,11 @@ body {
   .station-grid {
     /* 단일 열 */
     grid-template-columns: 1fr;
+  }
+
+  /* 차트 컨테이너 높이 조정 */
+  .chart-container {
+    /* 모바일 맞춤 최소 높이 */
+    min-height: 280px;
   }
 }
