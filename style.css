@@ -1,318 +1,534 @@
 /* 전체 기본 여백 및 박스 사이징 초기화 */
 * {
-  /* 모든 요소의 여백 제거 */
+  /* 모든 요소의 외부 여백 제거 */
   margin: 0;
   /* 모든 요소의 내부 여백 제거 */
   padding: 0;
-  /* 테두리와 패딩을 너비에 포함하도록 설정 */
+  /* 박스 크기를 테두리와 패딩 포함으로 설정 */
   box-sizing: border-box;
-  /* 가독성 높은 기본 고딕 서체 지정 */
-  font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  /* Pretendard 및 시스템 기본 고딕 폰트 패밀리 지정 */
+  font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, Roboto, 'Helvetica Neue', 'Segoe UI', 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', sans-serif;
 }
 
 /* 화면 전체 배경 및 텍스트 기본 스타일 */
 body {
-  /* 은은하고 편안한 연회색 배경 */
-  background-color: #f4f6fa;
-  /* 가독성을 높인 기본 본문 텍스트 색상 */
-  color: #333333;
-  /* 본문 줄간격 설정 */
+  /* 부드럽고 차분한 밝은 그레이 배경색 */
+  background-color: #f3f4f8;
+  /* 본문 기본 글자색 */
+  color: #2d3748;
+  /* 편안한 줄간격 */
   line-height: 1.6;
-  /* 모바일 화면을 고려한 본문 기본 패딩 */
-  padding: 16px;
+  /* 화면 패딩 */
+  padding: 20px 16px 40px;
 }
 
 /* 중앙 정렬 메인 래퍼 컨테이너 */
 .container {
-  /* 최대 가로 폭 제한 */
-  max-width: 1000px;
-  /* 좌우 가운데 정렬 */
+  /* 최대 가로폭 제한 */
+  max-width: 960px;
+  /* 가운데 정렬 */
   margin: 0 auto;
 }
 
 /* 헤더 상단 영역 */
 .header {
-  /* 가운데 정렬 */
+  /* 중앙 정렬 */
   text-align: center;
-  /* 아래쪽 여백 */
-  margin-bottom: 24px;
+  /* 하단 간격 */
+  margin-bottom: 20px;
 }
 
 /* 헤더 제목 스타일 */
 .header h1 {
-  /* 큰 글자 크기 지정 */
-  font-size: 1.8rem;
-  /* 진한 폰트 굵기 */
-  font-weight: 700;
-  /* 제목 색상 */
+  /* 제목 글자 크기 */
+  font-size: 1.9rem;
+  /* 굵은 글씨 */
+  font-weight: 800;
+  /* 어두운 블루블랙 */
   color: #1a202c;
-  /* 아래쪽 간격 */
-  margin-bottom: 6px;
+  /* 글자 간격 */
+  letter-spacing: -0.5px;
 }
 
 /* 헤더 설명 문구 */
 .header p {
-  /* 보조 설명 텍스트 크기 */
+  /* 작은 보조 텍스트 */
   font-size: 0.95rem;
-  /* 연한 회색 톤 */
+  /* 중간 톤 회색 */
   color: #718096;
+  /* 위쪽 간격 */
+  margin-top: 4px;
 }
 
-/* 컨트롤 패널 (지역 선택 및 평균 카드) 레이아웃 */
-.control-panel {
-  /* 플렉스박스 배치 적용 */
-  display: flex;
-  /* 가로로 균등하게 배치 */
-  justify-content: space-between;
-  /* 상하 중앙 정렬 */
-  align-items: center;
-  /* 유연한 줄바꿈 허용 (반응형 대비) */
-  flex-wrap: wrap;
-  /* 요소 사이 간격 */
-  gap: 16px;
-  /* 흰색 배경 카드 */
+/* 지역 선택 컨트롤 섹션 */
+.select-section {
+  /* 흰색 배경 */
   background: #ffffff;
   /* 내부 여백 */
-  padding: 20px;
-  /* 부드러운 둥근 모서리 */
+  padding: 14px 20px;
+  /* 둥근 테두리 */
   border-radius: 12px;
-  /* 부드러운 그림자 효과 */
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-  /* 아래쪽 여백 */
-  margin-bottom: 20px;
-}
-
-/* 폼 그룹 레이아웃 */
-.form-group {
-  /* 세로 방향 플렉스 배치 */
+  /* 플렉스박스 배치 */
   display: flex;
-  /* 열 방향 정렬 */
-  flex-direction: column;
+  /* 좌우 정렬 */
+  align-items: center;
   /* 라벨과 셀렉트 사이 간격 */
-  gap: 8px;
-  /* 최소 너비 설정 */
-  min-width: 200px;
-  /* 공간 유연하게 채우기 */
-  flex: 1;
+  gap: 12px;
+  /* 하단 여백 */
+  margin-bottom: 16px;
+  /* 부드러운 그림자 */
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
 }
 
-/* 셀렉트 드롭다운 라벨 */
-.form-group label {
-  /* 폰트 굵기 설정 */
-  font-weight: 600;
+/* 지역 선택 라벨 */
+.select-section label {
+  /* 굵기 */
+  font-weight: 700;
   /* 글자 크기 */
   font-size: 0.95rem;
-  /* 어두운 회색 */
-  color: #2d3748;
+  /* 색상 */
+  color: #4a5568;
 }
 
-/* 시도 선택 셀렉트 박스 */
+/* 시도 선택 드롭다운 박스 */
 #sidoSelect {
-  /* 셀렉트 박스 패딩 */
-  padding: 12px 16px;
+  /* 공간 유연하게 채우기 */
+  flex: 1;
+  /* 내부 여백 */
+  padding: 10px 14px;
   /* 글자 크기 */
   font-size: 1rem;
-  /* 둥근 테두리 */
+  /* 굵기 */
+  font-weight: 600;
+  /* 테두리 선 */
+  border: 1.5px solid #e2e8f0;
+  /* 둥근 모서리 */
   border-radius: 8px;
-  /* 연한 테두리 선 */
-  border: 1px solid #cbd5e0;
   /* 배경 흰색 */
   background-color: #ffffff;
-  /* 포커스 아웃라인 제거 */
-  outline: none;
-  /* 마우스 커서 포인터로 변경 */
+  /* 포인터 커서 */
   cursor: pointer;
-  /* 포커스 전환 애니메이션 */
+  /* 외곽선 제거 */
+  outline: none;
+  /* 전환 애니메이션 */
   transition: border-color 0.2s, box-shadow 0.2s;
 }
 
-/* 셀렉트 박스 포커스 시 강조 효과 */
+/* 드롭다운 포커스 스타일 */
 #sidoSelect:focus {
-  /* 테두리 파란색으로 강조 */
+  /* 파란색 테두리 */
   border-color: #3182ce;
-  /* 은은한 외곽 글로우 효과 */
-  box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.2);
+  /* 푸른 빛 그림자 */
+  box-shadow: 0 0 0 3px rgba(49, 130, 206, 0.15);
 }
 
-/* 평균 수치 표시 카드 */
-.summary-card {
-  /* 세로 플렉스 정렬 */
+/* 대형 공기 신호등 전광판 카드 */
+.traffic-light-card {
+  /* 흰색 기본 배경 */
+  background: #ffffff;
+  /* 넉넉한 둥근 모서리 */
+  border-radius: 18px;
+  /* 내부 패딩 */
+  padding: 28px 24px 20px;
+  /* 돋보이는 입체 그림자 */
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.07);
+  /* 하단 간격 */
+  margin-bottom: 20px;
+  /* 중앙 정렬 */
+  text-align: center;
+  /* 배경 및 테두리 부드러운 전환 */
+  transition: background-color 0.3s, border-color 0.3s;
+  /* 기본 연한 테두리 */
+  border: 2px solid #e2e8f0;
+}
+
+/* 신호등 대표 상태 표시 상단부 레이아웃 */
+.signal-main {
+  /* 플렉스 배치 */
   display: flex;
-  /* 수직 정렬 */
-  flex-direction: column;
-  /* 오른쪽 정렬 */
-  align-items: flex-end;
-  /* 카드 최소 너비 */
-  min-width: 200px;
+  /* 가로 중앙 정렬 */
+  justify-content: center;
+  /* 상하 중앙 정렬 */
+  align-items: center;
+  /* 이모지와 텍스트 사이 간격 */
+  gap: 20px;
+  /* 하단 간격 */
+  margin-bottom: 18px;
+  /* 반응형 줄바꿈 대비 */
+  flex-wrap: wrap;
 }
 
-/* 평균 수치 라벨 텍스트 */
-.summary-title {
-  /* 작은 라벨 크기 */
-  font-size: 0.9rem;
-  /* 중간 톤 회색 */
-  color: #4a5568;
-  /* 굵기 */
-  font-weight: 600;
-}
-
-/* 큰 글자 평균 미세먼지 수치 */
-.summary-value {
-  /* 크게 돋보이는 폰트 크기 */
-  font-size: 2.5rem;
-  /* 매우 두꺼운 굵기 */
-  font-weight: 800;
-  /* 텍스트 색상 */
-  color: #2b6cb0;
+/* 대형 신호등 이모지 (🔵🟢🟠🔴) */
+.signal-emoji {
+  /* 눈에 띄는 초대형 폰트 크기 */
+  font-size: 4rem;
   /* 높이 맞춤 */
-  line-height: 1.1;
-  /* 위아래 간격 */
-  margin: 4px 0;
+  line-height: 1;
+  /* 크기 변환 애니메이션 */
+  transition: transform 0.2s ease-in-out;
+}
+
+/* 상태 및 수치 텍스트 그룹 */
+.signal-details {
+  /* 세로 정렬 플렉스 */
+  display: flex;
+  /* 열 방향 */
+  flex-direction: column;
+  /* 텍스트 왼쪽 정렬 */
+  text-align: left;
+  /* 간격 */
+  gap: 4px;
+}
+
+/* 지역명 및 대표 상태 텍스트 (예: 서울 좋음) */
+.signal-status-title {
+  /* 매우 큰 텍스트 크기 */
+  font-size: 2.2rem;
+  /* 아주 굵은 서체 */
+  font-weight: 800;
+  /* 글자 간격 좁히기 */
+  letter-spacing: -1px;
+  /* 높이 맞춤 */
+  line-height: 1.2;
+}
+
+/* 대표 상태 텍스트 강조 */
+.signal-status-title .grade-text {
+  /* 왼쪽 간격 */
+  margin-left: 8px;
+}
+
+/* 평균 미세먼지 수치 행 */
+.signal-avg-val {
+  /* 글자 크기 */
+  font-size: 1.3rem;
+  /* 색상 */
+  color: #4a5568;
+  /* 플렉스 정렬 */
+  display: flex;
+  /* 상하 정렬 */
+  align-items: baseline;
+  /* 요소 간격 */
+  gap: 6px;
+}
+
+/* 평균 수치 라벨 */
+.signal-avg-val .avg-label {
+  /* 일반 굵기 */
+  font-weight: 500;
+  /* 작은 글자 */
+  font-size: 1rem;
+}
+
+/* 큰 글자 평균 숫자 */
+.signal-avg-val strong {
+  /* 크게 돋보이는 크기 */
+  font-size: 2rem;
+  /* 굵은 글씨 */
+  font-weight: 800;
+  /* 진한 텍스트 */
+  color: #1a202c;
 }
 
 /* 단위 스타일 */
-.summary-value .unit {
-  /* 작은 크기의 단위 폰트 */
-  font-size: 1rem;
-  /* 보통 굵기 */
-  font-weight: normal;
-  /* 연한 텍스트 색상 */
+.signal-avg-val .unit {
+  /* 작은 글자 */
+  font-size: 0.95rem;
+  /* 연한 색상 */
   color: #718096;
 }
 
-/* 평균 미세먼지 상태 문구 */
-.summary-status {
-  /* 상태 텍스트 크기 */
+/* 한 줄 안내 문구 배너 (나쁨 시 마스크 권고 등) */
+.signal-advice-banner {
+  /* 둥근 테두리 */
+  border-radius: 12px;
+  /* 내부 패딩 */
+  padding: 12px 18px;
+  /* 강조 폰트 굵기 */
+  font-weight: 700;
+  /* 글자 크기 */
+  font-size: 1.05rem;
+  /* 기본 회색 배경 */
+  background-color: #edf2f7;
+  /* 기본 글자색 */
+  color: #2d3748;
+  /* 부드러운 전환 */
+  transition: all 0.3s ease;
+  /* 중앙 정렬 */
+  display: inline-block;
+  /* 너비 최대치 맞춤 */
+  width: 100%;
+}
+
+/* 최신 측정 시각 표시부 */
+.signal-timestamp {
+  /* 작은 글자 */
   font-size: 0.85rem;
-  /* 폰트 굵기 */
-  font-weight: 600;
-  /* 상태 기본 색상 */
+  /* 연한 그레이 색상 */
+  color: #a0aec0;
+  /* 위쪽 간격 */
+  margin-top: 12px;
+  /* 오른쪽 정렬 */
+  text-align: right;
+}
+
+/* 신호등 등급 테마 - 좋음 (파랑) */
+.theme-good {
+  /* 은은한 연하늘색 배경 */
+  background-color: #f0f7ff !important;
+  /* 하늘색 테두리 */
+  border-color: #90cdf4 !important;
+}
+.theme-good .grade-text {
+  /* 파란색 글자 */
+  color: #2b6cb0;
+}
+.theme-good #adviceBanner {
+  /* 파란 톤 배너 배경 */
+  background-color: #ebf8ff;
+  /* 진한 파란색 글자 */
+  color: #2b6cb0;
+}
+
+/* 신호등 등급 테마 - 보통 (초록) */
+.theme-normal {
+  /* 은은한 연초록 배경 */
+  background-color: #f0fff4 !important;
+  /* 연초록 테두리 */
+  border-color: #9ae6b4 !important;
+}
+.theme-normal .grade-text {
+  /* 초록색 글자 */
+  color: #276749;
+}
+.theme-normal #adviceBanner {
+  /* 초록 톤 배너 배경 */
+  background-color: #e6fffa;
+  /* 진한 초록 글자 */
+  color: #234e52;
+}
+
+/* 신호등 등급 테마 - 나쁨 (주황) */
+.theme-bad {
+  /* 은은한 살구빛 배경 */
+  background-color: #fffaf0 !important;
+  /* 주황색 테두리 */
+  border-color: #fbd38d !important;
+}
+.theme-bad .grade-text {
+  /* 주황색 글자 */
+  color: #c05621;
+}
+.theme-bad #adviceBanner {
+  /* 연주황 배너 배경 */
+  background-color: #feebc8;
+  /* 진한 주황 글자 */
+  color: #9c4221;
+}
+
+/* 신호등 등급 테마 - 매우나쁨 (빨강) */
+.theme-very-bad {
+  /* 은은한 연분홍 배경 */
+  background-color: #fff5f5 !important;
+  /* 빨간색 테두리 */
+  border-color: #feb2b2 !important;
+}
+.theme-very-bad .grade-text {
+  /* 빨간색 글자 */
+  color: #c53030;
+}
+.theme-very-bad #adviceBanner {
+  /* 연빨강 배너 배경 */
+  background-color: #fed7d7;
+  /* 진한 빨강 글자 */
+  color: #9b2c2c;
+}
+
+/* 신호등 등급 테마 - 정보없음 (회색) */
+.theme-unknown {
+  /* 기본 밝은 회색 배경 */
+  background-color: #ffffff !important;
+  /* 연회색 테두리 */
+  border-color: #e2e8f0 !important;
+}
+.theme-unknown .grade-text {
+  /* 회색 글자 */
   color: #718096;
 }
 
 /* 등급 안내 범례 레이아웃 */
 .grade-legend {
-  /* 가로 정렬 플렉스 */
+  /* 가로 플렉스 정렬 */
   display: flex;
-  /* 넘칠 경우 줄바꿈 */
+  /* 넘침 줄바꿈 */
   flex-wrap: wrap;
-  /* 배지 사이 간격 */
+  /* 간격 */
   gap: 8px;
-  /* 중앙 정렬 */
+  /* 가운데 정렬 */
   justify-content: center;
-  /* 아래쪽 여백 */
+  /* 하단 여백 */
   margin-bottom: 20px;
 }
 
 /* 범례 뱃지 기본 공통 스타일 */
 .legend-badge {
-  /* 뱃지 내부 여백 */
-  padding: 6px 12px;
-  /* 완전히 둥근 캡슐 모양 */
+  /* 내부 여백 */
+  padding: 6px 14px;
+  /* 둥근 캡슐 모양 */
   border-radius: 9999px;
   /* 글자 크기 */
-  font-size: 0.8rem;
+  font-size: 0.85rem;
   /* 굵기 */
-  font-weight: 600;
-  /* 뱃지 글자색 흰색 */
-  color: #ffffff;
+  font-weight: 700;
+  /* 테두리 1px */
+  border: 1px solid transparent;
 }
 
-/* 로딩 및 상태 안내 메시지 */
+/* 범례 - 좋음 */
+.legend-badge.grade-good {
+  /* 은은한 파랑 배경 */
+  background-color: #ebf8ff;
+  /* 글자 파랑 */
+  color: #2b6cb0;
+  /* 테두리 파랑 */
+  border-color: #bee3f8;
+}
+
+/* 범례 - 보통 */
+.legend-badge.grade-normal {
+  /* 은은한 초록 배경 */
+  background-color: #f0fff4;
+  /* 글자 초록 */
+  color: #276749;
+  /* 테두리 초록 */
+  border-color: #c6f6d5;
+}
+
+/* 범례 - 나쁨 */
+.legend-badge.grade-bad {
+  /* 은은한 주황 배경 */
+  background-color: #fffaf0;
+  /* 글자 주황 */
+  color: #c05621;
+  /* 테두리 주황 */
+  border-color: #feebc8;
+}
+
+/* 범례 - 매우나쁨 */
+.legend-badge.grade-very-bad {
+  /* 은은한 빨강 배경 */
+  background-color: #fff5f5;
+  /* 글자 빨강 */
+  color: #c53030;
+  /* 테두리 빨강 */
+  border-color: #fed7d7;
+}
+
+/* 범례 - 측정안됨 */
+.legend-badge.grade-unknown {
+  /* 은은한 회색 배경 */
+  background-color: #f7fafc;
+  /* 글자 회색 */
+  color: #718096;
+  /* 테두리 회색 */
+  border-color: #e2e8f0;
+}
+
+/* 로딩 및 안내 메시지 */
 .loading-status {
   /* 가운데 정렬 */
   text-align: center;
-  /* 상하 내부 여백 */
-  padding: 40px 20px;
+  /* 여백 */
+  padding: 30px;
   /* 글자 크기 */
   font-size: 1.1rem;
+  /* 굵기 */
+  font-weight: 700;
   /* 색상 */
   color: #4a5568;
-  /* 부드러운 배경 */
+  /* 흰색 배경 */
   background: #ffffff;
-  /* 둥근 테두리 */
-  border-radius: 12px;
-  /* 그림자 효과 */
+  /* 둥근 모서리 */
+  border-radius: 14px;
+  /* 그림자 */
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
 }
 
-/* 측정소 카드 그리드 레이아웃 */
+/* 측정소 카드 그리드 */
 .station-grid {
-  /* 반응형 CSS 그리드 적용 */
+  /* 반응형 그리드 */
   display: grid;
-  /* 화면 너비에 맞춘 자동 반복 열 배치 (최소 260px) */
+  /* 최소 260px 자동 반복 열 */
   grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
   /* 카드 사이 간격 */
   gap: 16px;
 }
 
-/* 측정소 카드 기본 스타일 */
+/* 측정소 카드 기본 스타일 (은은한 배경과 테두리) */
 .station-card {
-  /* 흰색 배경 */
-  background: #ffffff;
   /* 둥근 모서리 */
-  border-radius: 12px;
+  border-radius: 14px;
   /* 내부 여백 */
   padding: 16px;
-  /* 그림자 */
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
-  /* 호버 애니메이션 부드럽게 */
+  /* 기본 1.5px 실선 테두리 */
+  border: 1.5px solid #e2e8f0;
+  /* 상단 5px 포인트 테두리 선 */
+  border-top-width: 5px;
+  /* 은은한 그림자 */
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.03);
+  /* 부드러운 애니메이션 */
   transition: transform 0.2s, box-shadow 0.2s;
-  /* 테두리 두께 */
-  border-top: 6px solid #a0aec0;
   /* 플렉스 세로 정렬 */
   display: flex;
   /* 열 방향 */
   flex-direction: column;
-  /* 항목 간 간격 */
+  /* 간격 */
   gap: 10px;
 }
 
 /* 카드 마우스 호버 효과 */
 .station-card:hover {
-  /* 살짝 위로 뜨는 효과 */
-  transform: translateY(-4px);
+  /* 위로 살짝 뜨는 효과 */
+  transform: translateY(-3px);
   /* 그림자 강화 */
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.08);
 }
 
-/* 카드 상단 헤더 영역 */
+/* 카드 상단 헤더 */
 .card-header {
-  /* 양 끝 정렬 */
+  /* 양쪽 정렬 */
   display: flex;
-  /* 요소 분산 정렬 */
+  /* 분산 배치 */
   justify-content: space-between;
-  /* 수직 중앙 정렬 */
+  /* 중앙 정렬 */
   align-items: center;
 }
 
-/* 측정소 이름 텍스트 */
+/* 측정소 이름 */
 .station-name {
-  /* 굵은 측정소 이름 */
-  font-size: 1.2rem;
-  /* 굵기 */
-  font-weight: 700;
-  /* 텍스트 색 */
+  /* 글자 크기 */
+  font-size: 1.15rem;
+  /* 굵은 글씨 */
+  font-weight: 800;
+  /* 어두운 색상 */
   color: #1a202c;
 }
 
-/* 카드 등급 뱃지 텍스트 */
+/* 카드 상태 뱃지 */
 .card-badge {
-  /* 뱃지 여백 */
-  padding: 4px 8px;
-  /* 모서리 둥글게 */
-  border-radius: 6px;
-  /* 폰트 크기 */
-  font-size: 0.75rem;
+  /* 내부 패딩 */
+  padding: 4px 10px;
+  /* 캡슐 모서리 */
+  border-radius: 9999px;
+  /* 글자 크기 */
+  font-size: 0.8rem;
   /* 굵기 */
   font-weight: 700;
-  /* 글자색 */
-  color: #ffffff;
 }
 
-/* 수치 정보 목록 영역 */
+/* 카드 바디 (수치 목록) */
 .card-body {
-  /* 세로 방향 정렬 */
+  /* 플렉스 세로 */
   display: flex;
   /* 열 방향 */
   flex-direction: column;
@@ -322,108 +538,159 @@ body {
 
 /* 개별 수치 항목 행 */
 .data-row {
-  /* 양쪽 정렬 */
+  /* 양쪽 끝 정렬 */
   display: flex;
-  /* 좌우 분할 */
+  /* 분산 배치 */
   justify-content: space-between;
-  /* 수직 정렬 */
+  /* 상하 중앙 */
   align-items: center;
   /* 글자 크기 */
   font-size: 0.95rem;
 }
 
-/* 항목 제목 라벨 */
+/* 수치 라벨 */
 .data-label {
-  /* 보조 텍스트 색 */
+  /* 보조 글자색 */
   color: #718096;
+  /* 굵기 */
+  font-weight: 500;
 }
 
-/* 항목 실제 수치 값 */
+/* 실제 수치 값 */
 .data-value {
-  /* 값 강조 굵기 */
-  font-weight: 700;
-  /* 텍스트 색상 */
+  /* 굵은 글씨 */
+  font-weight: 800;
+  /* 진한 텍스트 */
   color: #2d3748;
 }
 
-/* 카드 하단 측정시각 영역 */
+/* 카드 하단 측정시각 */
 .card-footer {
-  /* 테두리 윗선 추가 */
-  border-top: 1px solid #edf2f7;
-  /* 위쪽 여백 */
+  /* 상단 얇은 분리선 */
+  border-top: 1px dashed rgba(0, 0, 0, 0.08);
+  /* 위쪽 패딩 */
   padding-top: 8px;
   /* 작은 글자 크기 */
   font-size: 0.8rem;
-  /* 옅은 회색 폰트 */
-  color: #a0aec0;
+  /* 연한 텍스트 색상 */
+  color: #718096;
   /* 우측 정렬 */
   text-align: right;
 }
 
-/* 등급 1: 좋음 (파랑 계열) */
-.grade-good {
-  /* 파란색 배경 */
-  background-color: #3182ce;
-  /* 파란색 테두리 */
-  border-top-color: #3182ce !important;
+/* 측정소 카드 등급별 은은한 배경 및 테두리 - 1등급 좋음 (파랑) */
+.card-good {
+  /* 은은한 파스텔 파랑 배경 */
+  background-color: #f7faff;
+  /* 연파랑 테두리 */
+  border-color: #bee3f8;
+  /* 상단 강조선 파랑 */
+  border-top-color: #3182ce;
+}
+.card-good .card-badge {
+  /* 파란 배경 뱃지 */
+  background-color: #ebf8ff;
+  /* 파란 글자 */
+  color: #2b6cb0;
 }
 
-/* 등급 2: 보통 (초록 계열) */
-.grade-normal {
-  /* 초록색 배경 */
-  background-color: #38a169;
-  /* 초록색 테두리 */
-  border-top-color: #38a169 !important;
+/* 측정소 카드 등급별 은은한 배경 및 테두리 - 2등급 보통 (초록) */
+.card-normal {
+  /* 은은한 파스텔 초록 배경 */
+  background-color: #f7fdf9;
+  /* 연초록 테두리 */
+  border-color: #c6f6d5;
+  /* 상단 강조선 초록 */
+  border-top-color: #38a169;
+}
+.card-normal .card-badge {
+  /* 초록 배경 뱃지 */
+  background-color: #f0fff4;
+  /* 초록 글자 */
+  color: #276749;
 }
 
-/* 등급 3: 나쁨 (주황 계열) */
-.grade-bad {
-  /* 주황색 배경 */
-  background-color: #dd6b20;
-  /* 주황색 테두리 */
-  border-top-color: #dd6b20 !important;
+/* 측정소 카드 등급별 은은한 배경 및 테두리 - 3등급 나쁨 (주황) */
+.card-bad {
+  /* 은은한 파스텔 주황 배경 */
+  background-color: #fffdfa;
+  /* 연주황 테두리 */
+  border-color: #feebc8;
+  /* 상단 강조선 주황 */
+  border-top-color: #dd6b20;
+}
+.card-bad .card-badge {
+  /* 주황 배경 뱃지 */
+  background-color: #fffaf0;
+  /* 주황 글자 */
+  color: #c05621;
 }
 
-/* 등급 4: 매우나쁨 (빨강 계열) */
-.grade-very-bad {
-  /* 빨간색 배경 */
-  background-color: #e53e3e;
-  /* 빨간색 테두리 */
-  border-top-color: #e53e3e !important;
+/* 측정소 카드 등급별 은은한 배경 및 테두리 - 4등급 매우나쁨 (빨강) */
+.card-very-bad {
+  /* 은은한 파스텔 빨강 배경 */
+  background-color: #fffafa;
+  /* 연빨강 테두리 */
+  border-color: #fed7d7;
+  /* 상단 강조선 빨강 */
+  border-top-color: #e53e3e;
+}
+.card-very-bad .card-badge {
+  /* 빨강 배경 뱃지 */
+  background-color: #fff5f5;
+  /* 빨강 글자 */
+  color: #c53030;
 }
 
-/* 등급 미제공 / 빈값 / 기타 (회색 계열) */
-.grade-unknown {
-  /* 회색 배경 */
-  background-color: #718096;
-  /* 회색 테두리 */
-  border-top-color: #a0aec0 !important;
+/* 측정소 카드 등급별 은은한 배경 및 테두리 - 등급없음 (회색) */
+.card-unknown {
+  /* 연회색 배경 */
+  background-color: #fafafa;
+  /* 연회색 테두리 */
+  border-color: #e2e8f0;
+  /* 상단 강조선 회색 */
+  border-top-color: #a0aec0;
+}
+.card-unknown .card-badge {
+  /* 회색 배경 뱃지 */
+  background-color: #edf2f7;
+  /* 회색 글자 */
+  color: #718096;
 }
 
-/* 모바일 화면 대응 미디어 쿼리 (화면 폭 600px 이하) */
+/* 모바일 화면 대응 (가로 600px 이하) */
 @media (max-width: 600px) {
-  /* 컨트롤 패널 세로 정렬로 변경 */
-  .control-panel {
+  /* 신호등 상단 플렉스 세로 정렬 */
+  .signal-main {
     /* 수직 배치 */
     flex-direction: column;
-    /* 왼쪽 정렬 */
-    align-items: stretch;
-  }
-
-  /* 모바일에서 평균 카드 정렬 조정 */
-  .summary-card {
     /* 중앙 정렬 */
-    align-items: center;
-    /* 상단 분리선 추가 */
-    border-top: 1px solid #e2e8f0;
-    /* 상단 패딩 */
-    padding-top: 12px;
+    text-align: center;
+    /* 간격 좁히기 */
+    gap: 10px;
   }
 
-  /* 그리드 열을 1열로 꽉 차게 설정 */
+  /* 텍스트 그룹 중앙 정렬 */
+  .signal-details {
+    /* 텍스트 가운데 정렬 */
+    text-align: center;
+  }
+
+  /* 평균 수치 행 가운데 정렬 */
+  .signal-avg-val {
+    /* 가운데 정렬 */
+    justify-content: center;
+  }
+
+  /* 제목 글자 크기 축소 */
+  .signal-status-title {
+    /* 모바일 맞춤 크기 */
+    font-size: 1.8rem;
+  }
+
+  /* 측정소 카드 그리드 1열 배치 */
   .station-grid {
-    /* 1개의 단일 열로 표시 */
+    /* 단일 열 */
     grid-template-columns: 1fr;
   }
 }
-

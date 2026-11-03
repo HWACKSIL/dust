@@ -7,95 +7,122 @@
   <!-- 모바일 및 반응형 뷰포트 설정 -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <!-- 웹페이지 제목 -->
-  <title>실시간 대기오염 정보 조회</title>
+  <title>우리 동네 공기 신호등</title>
+  <!-- Pretendard 웹폰트 CDN 로드 -->
+  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css" />
   <!-- 스타일시트(CSS) 파일 연결 -->
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <!-- 메인 컨테이너 영역 -->
+  <!-- 메인 래퍼 컨테이너 -->
   <div class="container">
     <!-- 헤더 타이틀 영역 -->
     <header class="header">
       <!-- 메인 제목 -->
-      <h1>전국 실시간 대기오염 정보</h1>
+      <h1>🚦 우리 동네 공기 신호등</h1>
       <!-- 부제목 설명 -->
-      <p>한국환경공단 에어코리아 공공 API 기반 미세먼지 현황</p>
+      <p>한국환경공단 에어코리아 실시간 대기질 신호등</p>
     </header>
 
-    <!-- 컨트롤 및 요약 정보 영역 -->
-    <section class="control-panel">
-      <!-- 시도 선택 드롭다운 폼 그룹 -->
-      <div class="form-group">
-        <!-- 드롭다운 라벨 -->
-        <label for="sidoSelect">지역 선택</label>
-        <!-- 시도 선택 셀렉트 박스 -->
-        <select id="sidoSelect">
-          <!-- 전국 옵션 -->
-          <option value="전국">전국</option>
-          <!-- 서울 옵션 (기본 선택) -->
-          <option value="서울" selected>서울</option>
-          <!-- 부산 옵션 -->
-          <option value="부산">부산</option>
-          <!-- 대구 옵션 -->
-          <option value="대구">대구</option>
-          <!-- 인천 옵션 -->
-          <option value="인천">인천</option>
-          <!-- 광주 옵션 -->
-          <option value="광주">광주</option>
-          <!-- 대전 옵션 -->
-          <option value="대전">대전</option>
-          <!-- 울산 옵션 -->
-          <option value="울산">울산</option>
-          <!-- 세종 옵션 -->
-          <option value="세종">세종</option>
-          <!-- 경기 옵션 -->
-          <option value="경기">경기</option>
-          <!-- 강원 옵션 -->
-          <option value="강원">강원</option>
-          <!-- 충북 옵션 -->
-          <option value="충북">충북</option>
-          <!-- 충남 옵션 -->
-          <option value="충남">충남</option>
-          <!-- 전북 옵션 -->
-          <option value="전북">전북</option>
-          <!-- 전남 옵션 -->
-          <option value="전남">전남</option>
-          <!-- 경북 옵션 -->
-          <option value="경북">경북</option>
-          <!-- 경남 옵션 -->
-          <option value="경남">경남</option>
-          <!-- 제주 옵션 -->
-          <option value="제주">제주</option>
-        </select>
+    <!-- 시도 선택 컨트롤 영역 -->
+    <section class="select-section">
+      <!-- 지역 선택 라벨 -->
+      <label for="sidoSelect">지역 선택</label>
+      <!-- 시도 드롭다운 메뉴 -->
+      <select id="sidoSelect">
+        <!-- 전국 옵션 -->
+        <option value="전국">전국</option>
+        <!-- 서울 옵션 (기본 선택) -->
+        <option value="서울" selected>서울</option>
+        <!-- 부산 옵션 -->
+        <option value="부산">부산</option>
+        <!-- 대구 옵션 -->
+        <option value="대구">대구</option>
+        <!-- 인천 옵션 -->
+        <option value="인천">인천</option>
+        <!-- 광주 옵션 -->
+        <option value="광주">광주</option>
+        <!-- 대전 옵션 -->
+        <option value="대전">대전</option>
+        <!-- 울산 옵션 -->
+        <option value="울산">울산</option>
+        <!-- 세종 옵션 -->
+        <option value="세종">세종</option>
+        <!-- 경기 옵션 -->
+        <option value="경기">경기</option>
+        <!-- 강원 옵션 -->
+        <option value="강원">강원</option>
+        <!-- 충북 옵션 -->
+        <option value="충북">충북</option>
+        <!-- 충남 옵션 -->
+        <option value="충남">충남</option>
+        <!-- 전북 옵션 -->
+        <option value="전북">전북</option>
+        <!-- 전남 옵션 -->
+        <option value="전남">전남</option>
+        <!-- 경북 옵션 -->
+        <option value="경북">경북</option>
+        <!-- 경남 옵션 -->
+        <option value="경남">경남</option>
+        <!-- 제주 옵션 -->
+        <option value="제주">제주</option>
+      </select>
+    </section>
+
+    <!-- 대형 공기 신호등 전광판 카드 -->
+    <section class="traffic-light-card" id="trafficLightCard">
+      <!-- 신호등 대표 상태 표시 상단부 -->
+      <div class="signal-main">
+        <!-- 대형 신호등 이모지 (🔵🟢🟠🔴) -->
+        <span class="signal-emoji" id="signalEmoji">⚪</span>
+        <!-- 상태 및 수치 텍스트 그룹 -->
+        <div class="signal-details">
+          <!-- 지역명 및 상태 텍스트 (예: 서울 좋음) -->
+          <div class="signal-status-title">
+            <!-- 선택된 지역명 -->
+            <span id="regionNameText">서울</span>
+            <!-- 대표 상태 텍스트 (좋음/보통/나쁨/매우나쁨) -->
+            <span id="statusGradeText" class="grade-text">불러오는 중...</span>
+          </div>
+          <!-- 평균 미세먼지 수치 표시부 -->
+          <div class="signal-avg-val">
+            <!-- 수치 라벨 -->
+            <span class="avg-label">평균 미세먼지:</span>
+            <!-- 실제 숫자 및 단위 -->
+            <strong id="avgValueNumber">-</strong> <span class="unit">µg/m³</span>
+          </div>
+        </div>
       </div>
 
-      <!-- 지역 평균 미세먼지 수치 카드 -->
-      <div class="summary-card">
-        <!-- 평균 수치 라벨 -->
-        <span class="summary-title"><span id="currentRegionText">서울</span> 평균 미세먼지 (PM10)</span>
-        <!-- 큰 글자 평균값 표시부 -->
-        <div class="summary-value" id="avgPm10">- <span class="unit">µg/m³</span></div>
-        <!-- 평균 상태 텍스트 -->
-        <span class="summary-status" id="avgStatus">측정 대기 중</span>
+      <!-- 그 아래 한 줄 안내 문구 (나쁨 이상 시 마스크 권고 등) -->
+      <div class="signal-advice-banner" id="adviceBanner">
+        <!-- 아이콘 및 안내 문구 텍스트 -->
+        <span id="adviceText">데이터를 불러오는 중입니다...</span>
+      </div>
+
+      <!-- 최신 측정 시각 표시부 -->
+      <div class="signal-timestamp" id="signalTimestamp">
+        <!-- 한국어 날짜/시간 기준 표시 -->
+        측정 시각: 확인 중...
       </div>
     </section>
 
-    <!-- 등급 안내 뱃지 영역 -->
+    <!-- 신호등 범례 안내 영역 -->
     <div class="grade-legend">
       <!-- 파랑: 좋음 -->
-      <span class="legend-badge grade-good">좋음 (1)</span>
+      <span class="legend-badge grade-good">🔵 좋음</span>
       <!-- 초록: 보통 -->
-      <span class="legend-badge grade-normal">보통 (2)</span>
+      <span class="legend-badge grade-normal">🟢 보통</span>
       <!-- 주황: 나쁨 -->
-      <span class="legend-badge grade-bad">나쁨 (3)</span>
+      <span class="legend-badge grade-bad">🟠 나쁨</span>
       <!-- 빨강: 매우나쁨 -->
-      <span class="legend-badge grade-very-bad">매우나쁨 (4)</span>
-      <!-- 회색: 측정안됨/미제공 -->
-      <span class="legend-badge grade-unknown">측정안됨 / 미제공</span>
+      <span class="legend-badge grade-very-bad">🔴 매우나쁨</span>
+      <!-- 회색: 측정안됨 -->
+      <span class="legend-badge grade-unknown">⚪ 측정안됨</span>
     </div>
 
-    <!-- 로딩 스피너 및 알림 메시지 영역 -->
-    <div id="loadingStatus" class="loading-status">데이터를 불러오는 중입니다...</div>
+    <!-- 로딩 스피너 및 에러 안내 영역 -->
+    <div id="loadingStatus" class="loading-status">불러오는 중...</div>
 
     <!-- 측정소별 카드 그리드 컨테이너 -->
     <main id="stationGrid" class="station-grid"></main>
@@ -105,4 +132,3 @@
   <script src="script.js"></script>
 </body>
 </html>
-
