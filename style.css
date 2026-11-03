@@ -1,0 +1,429 @@
+/* 전체 기본 여백 및 박스 사이징 초기화 */
+* {
+  /* 모든 요소의 여백 제거 */
+  margin: 0;
+  /* 모든 요소의 내부 여백 제거 */
+  padding: 0;
+  /* 테두리와 패딩을 너비에 포함하도록 설정 */
+  box-sizing: border-box;
+  /* 가독성 높은 기본 고딕 서체 지정 */
+  font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+/* 화면 전체 배경 및 텍스트 기본 스타일 */
+body {
+  /* 은은하고 편안한 연회색 배경 */
+  background-color: #f4f6fa;
+  /* 가독성을 높인 기본 본문 텍스트 색상 */
+  color: #333333;
+  /* 본문 줄간격 설정 */
+  line-height: 1.6;
+  /* 모바일 화면을 고려한 본문 기본 패딩 */
+  padding: 16px;
+}
+
+/* 중앙 정렬 메인 래퍼 컨테이너 */
+.container {
+  /* 최대 가로 폭 제한 */
+  max-width: 1000px;
+  /* 좌우 가운데 정렬 */
+  margin: 0 auto;
+}
+
+/* 헤더 상단 영역 */
+.header {
+  /* 가운데 정렬 */
+  text-align: center;
+  /* 아래쪽 여백 */
+  margin-bottom: 24px;
+}
+
+/* 헤더 제목 스타일 */
+.header h1 {
+  /* 큰 글자 크기 지정 */
+  font-size: 1.8rem;
+  /* 진한 폰트 굵기 */
+  font-weight: 700;
+  /* 제목 색상 */
+  color: #1a202c;
+  /* 아래쪽 간격 */
+  margin-bottom: 6px;
+}
+
+/* 헤더 설명 문구 */
+.header p {
+  /* 보조 설명 텍스트 크기 */
+  font-size: 0.95rem;
+  /* 연한 회색 톤 */
+  color: #718096;
+}
+
+/* 컨트롤 패널 (지역 선택 및 평균 카드) 레이아웃 */
+.control-panel {
+  /* 플렉스박스 배치 적용 */
+  display: flex;
+  /* 가로로 균등하게 배치 */
+  justify-content: space-between;
+  /* 상하 중앙 정렬 */
+  align-items: center;
+  /* 유연한 줄바꿈 허용 (반응형 대비) */
+  flex-wrap: wrap;
+  /* 요소 사이 간격 */
+  gap: 16px;
+  /* 흰색 배경 카드 */
+  background: #ffffff;
+  /* 내부 여백 */
+  padding: 20px;
+  /* 부드러운 둥근 모서리 */
+  border-radius: 12px;
+  /* 부드러운 그림자 효과 */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  /* 아래쪽 여백 */
+  margin-bottom: 20px;
+}
+
+/* 폼 그룹 레이아웃 */
+.form-group {
+  /* 세로 방향 플렉스 배치 */
+  display: flex;
+  /* 열 방향 정렬 */
+  flex-direction: column;
+  /* 라벨과 셀렉트 사이 간격 */
+  gap: 8px;
+  /* 최소 너비 설정 */
+  min-width: 200px;
+  /* 공간 유연하게 채우기 */
+  flex: 1;
+}
+
+/* 셀렉트 드롭다운 라벨 */
+.form-group label {
+  /* 폰트 굵기 설정 */
+  font-weight: 600;
+  /* 글자 크기 */
+  font-size: 0.95rem;
+  /* 어두운 회색 */
+  color: #2d3748;
+}
+
+/* 시도 선택 셀렉트 박스 */
+#sidoSelect {
+  /* 셀렉트 박스 패딩 */
+  padding: 12px 16px;
+  /* 글자 크기 */
+  font-size: 1rem;
+  /* 둥근 테두리 */
+  border-radius: 8px;
+  /* 연한 테두리 선 */
+  border: 1px solid #cbd5e0;
+  /* 배경 흰색 */
+  background-color: #ffffff;
+  /* 포커스 아웃라인 제거 */
+  outline: none;
+  /* 마우스 커서 포인터로 변경 */
+  cursor: pointer;
+  /* 포커스 전환 애니메이션 */
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+/* 셀렉트 박스 포커스 시 강조 효과 */
+#sidoSelect:focus {
+  /* 테두리 파란색으로 강조 */
+  border-color: #3182ce;
+  /* 은은한 외곽 글로우 효과 */
+  box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.2);
+}
+
+/* 평균 수치 표시 카드 */
+.summary-card {
+  /* 세로 플렉스 정렬 */
+  display: flex;
+  /* 수직 정렬 */
+  flex-direction: column;
+  /* 오른쪽 정렬 */
+  align-items: flex-end;
+  /* 카드 최소 너비 */
+  min-width: 200px;
+}
+
+/* 평균 수치 라벨 텍스트 */
+.summary-title {
+  /* 작은 라벨 크기 */
+  font-size: 0.9rem;
+  /* 중간 톤 회색 */
+  color: #4a5568;
+  /* 굵기 */
+  font-weight: 600;
+}
+
+/* 큰 글자 평균 미세먼지 수치 */
+.summary-value {
+  /* 크게 돋보이는 폰트 크기 */
+  font-size: 2.5rem;
+  /* 매우 두꺼운 굵기 */
+  font-weight: 800;
+  /* 텍스트 색상 */
+  color: #2b6cb0;
+  /* 높이 맞춤 */
+  line-height: 1.1;
+  /* 위아래 간격 */
+  margin: 4px 0;
+}
+
+/* 단위 스타일 */
+.summary-value .unit {
+  /* 작은 크기의 단위 폰트 */
+  font-size: 1rem;
+  /* 보통 굵기 */
+  font-weight: normal;
+  /* 연한 텍스트 색상 */
+  color: #718096;
+}
+
+/* 평균 미세먼지 상태 문구 */
+.summary-status {
+  /* 상태 텍스트 크기 */
+  font-size: 0.85rem;
+  /* 폰트 굵기 */
+  font-weight: 600;
+  /* 상태 기본 색상 */
+  color: #718096;
+}
+
+/* 등급 안내 범례 레이아웃 */
+.grade-legend {
+  /* 가로 정렬 플렉스 */
+  display: flex;
+  /* 넘칠 경우 줄바꿈 */
+  flex-wrap: wrap;
+  /* 배지 사이 간격 */
+  gap: 8px;
+  /* 중앙 정렬 */
+  justify-content: center;
+  /* 아래쪽 여백 */
+  margin-bottom: 20px;
+}
+
+/* 범례 뱃지 기본 공통 스타일 */
+.legend-badge {
+  /* 뱃지 내부 여백 */
+  padding: 6px 12px;
+  /* 완전히 둥근 캡슐 모양 */
+  border-radius: 9999px;
+  /* 글자 크기 */
+  font-size: 0.8rem;
+  /* 굵기 */
+  font-weight: 600;
+  /* 뱃지 글자색 흰색 */
+  color: #ffffff;
+}
+
+/* 로딩 및 상태 안내 메시지 */
+.loading-status {
+  /* 가운데 정렬 */
+  text-align: center;
+  /* 상하 내부 여백 */
+  padding: 40px 20px;
+  /* 글자 크기 */
+  font-size: 1.1rem;
+  /* 색상 */
+  color: #4a5568;
+  /* 부드러운 배경 */
+  background: #ffffff;
+  /* 둥근 테두리 */
+  border-radius: 12px;
+  /* 그림자 효과 */
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+/* 측정소 카드 그리드 레이아웃 */
+.station-grid {
+  /* 반응형 CSS 그리드 적용 */
+  display: grid;
+  /* 화면 너비에 맞춘 자동 반복 열 배치 (최소 260px) */
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  /* 카드 사이 간격 */
+  gap: 16px;
+}
+
+/* 측정소 카드 기본 스타일 */
+.station-card {
+  /* 흰색 배경 */
+  background: #ffffff;
+  /* 둥근 모서리 */
+  border-radius: 12px;
+  /* 내부 여백 */
+  padding: 16px;
+  /* 그림자 */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+  /* 호버 애니메이션 부드럽게 */
+  transition: transform 0.2s, box-shadow 0.2s;
+  /* 테두리 두께 */
+  border-top: 6px solid #a0aec0;
+  /* 플렉스 세로 정렬 */
+  display: flex;
+  /* 열 방향 */
+  flex-direction: column;
+  /* 항목 간 간격 */
+  gap: 10px;
+}
+
+/* 카드 마우스 호버 효과 */
+.station-card:hover {
+  /* 살짝 위로 뜨는 효과 */
+  transform: translateY(-4px);
+  /* 그림자 강화 */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+}
+
+/* 카드 상단 헤더 영역 */
+.card-header {
+  /* 양 끝 정렬 */
+  display: flex;
+  /* 요소 분산 정렬 */
+  justify-content: space-between;
+  /* 수직 중앙 정렬 */
+  align-items: center;
+}
+
+/* 측정소 이름 텍스트 */
+.station-name {
+  /* 굵은 측정소 이름 */
+  font-size: 1.2rem;
+  /* 굵기 */
+  font-weight: 700;
+  /* 텍스트 색 */
+  color: #1a202c;
+}
+
+/* 카드 등급 뱃지 텍스트 */
+.card-badge {
+  /* 뱃지 여백 */
+  padding: 4px 8px;
+  /* 모서리 둥글게 */
+  border-radius: 6px;
+  /* 폰트 크기 */
+  font-size: 0.75rem;
+  /* 굵기 */
+  font-weight: 700;
+  /* 글자색 */
+  color: #ffffff;
+}
+
+/* 수치 정보 목록 영역 */
+.card-body {
+  /* 세로 방향 정렬 */
+  display: flex;
+  /* 열 방향 */
+  flex-direction: column;
+  /* 간격 */
+  gap: 6px;
+}
+
+/* 개별 수치 항목 행 */
+.data-row {
+  /* 양쪽 정렬 */
+  display: flex;
+  /* 좌우 분할 */
+  justify-content: space-between;
+  /* 수직 정렬 */
+  align-items: center;
+  /* 글자 크기 */
+  font-size: 0.95rem;
+}
+
+/* 항목 제목 라벨 */
+.data-label {
+  /* 보조 텍스트 색 */
+  color: #718096;
+}
+
+/* 항목 실제 수치 값 */
+.data-value {
+  /* 값 강조 굵기 */
+  font-weight: 700;
+  /* 텍스트 색상 */
+  color: #2d3748;
+}
+
+/* 카드 하단 측정시각 영역 */
+.card-footer {
+  /* 테두리 윗선 추가 */
+  border-top: 1px solid #edf2f7;
+  /* 위쪽 여백 */
+  padding-top: 8px;
+  /* 작은 글자 크기 */
+  font-size: 0.8rem;
+  /* 옅은 회색 폰트 */
+  color: #a0aec0;
+  /* 우측 정렬 */
+  text-align: right;
+}
+
+/* 등급 1: 좋음 (파랑 계열) */
+.grade-good {
+  /* 파란색 배경 */
+  background-color: #3182ce;
+  /* 파란색 테두리 */
+  border-top-color: #3182ce !important;
+}
+
+/* 등급 2: 보통 (초록 계열) */
+.grade-normal {
+  /* 초록색 배경 */
+  background-color: #38a169;
+  /* 초록색 테두리 */
+  border-top-color: #38a169 !important;
+}
+
+/* 등급 3: 나쁨 (주황 계열) */
+.grade-bad {
+  /* 주황색 배경 */
+  background-color: #dd6b20;
+  /* 주황색 테두리 */
+  border-top-color: #dd6b20 !important;
+}
+
+/* 등급 4: 매우나쁨 (빨강 계열) */
+.grade-very-bad {
+  /* 빨간색 배경 */
+  background-color: #e53e3e;
+  /* 빨간색 테두리 */
+  border-top-color: #e53e3e !important;
+}
+
+/* 등급 미제공 / 빈값 / 기타 (회색 계열) */
+.grade-unknown {
+  /* 회색 배경 */
+  background-color: #718096;
+  /* 회색 테두리 */
+  border-top-color: #a0aec0 !important;
+}
+
+/* 모바일 화면 대응 미디어 쿼리 (화면 폭 600px 이하) */
+@media (max-width: 600px) {
+  /* 컨트롤 패널 세로 정렬로 변경 */
+  .control-panel {
+    /* 수직 배치 */
+    flex-direction: column;
+    /* 왼쪽 정렬 */
+    align-items: stretch;
+  }
+
+  /* 모바일에서 평균 카드 정렬 조정 */
+  .summary-card {
+    /* 중앙 정렬 */
+    align-items: center;
+    /* 상단 분리선 추가 */
+    border-top: 1px solid #e2e8f0;
+    /* 상단 패딩 */
+    padding-top: 12px;
+  }
+
+  /* 그리드 열을 1열로 꽉 차게 설정 */
+  .station-grid {
+    /* 1개의 단일 열로 표시 */
+    grid-template-columns: 1fr;
+  }
+}
+
